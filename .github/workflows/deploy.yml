@@ -1,4 +1,4 @@
-name: CI/CD with Terraform
+name: CI/CD with Terraform & AWS
 on:
   push:
     branches:
