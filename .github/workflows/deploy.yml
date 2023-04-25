@@ -35,5 +35,6 @@ jobs:
         run: terraform apply -input=false tfplan
         working-directory: ./terraform
       - name: Terraform Destroy
-        run: terraform destroy
+        id: destroy
+        run: terraform destroy -var="region=${{ env.AWS_DEFAULT_REGION }}" -var="public_key=${{ env.PUBLIC_SSH_KEY }}" -var="key_name=${{ env.KEY_NAME }}" -var="private_key=${{ env.PRIVATE_SSH_KEY }}"
         working-directory: ./terraform
