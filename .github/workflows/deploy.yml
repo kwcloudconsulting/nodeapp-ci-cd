@@ -1,4 +1,5 @@
 name: CI/CD with Terraform & AWS
+
 on:
   push:
     branches:
@@ -27,14 +28,14 @@ jobs:
         working-directory: ./terraform
       - name: Terraform Plan
         id: plan
-        run: terraform plan -var="region=${{ env.AWS_DEFAULT_REGION }}" -var="public_key=${{ env.PUBLIC_SSH_KEY }}" -var="key_name"=${{ env.KEY_NAME}} -var="private_key=${{ env.PRIVATE_SSH_KEY }}" -out=tfplan -input=false
+        run: terraform plan -var="region=${{ env.AWS_DEFAULT_REGION }}" -var="public_key=${{ env.PUBLIC_SSH_KEY }}" -var="key_name=${{ env.KEY_NAME }}" -var="private_key=${{ env.PRIVATE_SSH_KEY }}" -out=tfplan -input=false
         working-directory: ./terraform
       - name: Terraform Apply
         id: apply
         run: terraform apply -input=false tfplan
         working-directory: ./terraform
       - name: Destroy Terraform infrastructure
-         run: |
-        cd terraform
-        terraform init
-        terraform destroy -auto-approve
+        run: |
+          cd terraform
+          terraform init
+          terraform destroy -auto-approve
