@@ -25,7 +25,7 @@ resource "aws_instance" "server" {
         type            = "ssh"
         host            = "self.public_ip"
         user            = "ubuntu"
-        private_key     = "var.private_key"
+        private_key     = var.private_key
         timeout         = "4m"
       
     }
