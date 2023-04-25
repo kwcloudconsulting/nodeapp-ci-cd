@@ -37,5 +37,5 @@ jobs:
       - name: Destroy Terraform infrastructure
         run: |
           cd terraform
-          terraform init
+          terraform init --var="region=${{ env.AWS_DEFAULT_REGION }}" -var="public_key=${{ env.PUBLIC_SSH_KEY }}" -var="key_name=${{ env.KEY_NAME }}" -var="private_key=${{ env.PRIVATE_SSH_KEY }}" -out=tfplan -input=false
           terraform destroy -auto-approve
